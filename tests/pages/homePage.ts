@@ -6,10 +6,5 @@ export class HomePage {
 //***** constructor */
   constructor(page: Page) {
     this.page = page;
-    this.appLogo = page.getByText('Swag Labs');
   }
-//***** assertions */  
-async assertAppLogoToBeVisible() {
-        await expect(this.appLogo).toBeVisible();
-    }
 }
