@@ -24,9 +24,14 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+    globalSetup: require.resolve('./global-setup'), // ← غيّر المسار لو حاطط الملف في فولدر تاني
+
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
+    storageState: 'storageState.json',
+    baseURL: 'https://www.saucedemo.com',
+    headless: false,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-first-failure',  // Collect trace when retrying the failed test
