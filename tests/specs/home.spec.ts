@@ -8,9 +8,7 @@ test('add items to cart', async ({ page }) => {
     homePage = new HomePage(page);
     await homePage.navigateToHomePage();
     await homePage.setFilterFromLowToHigh();
-    await homePage.addItem1ToCart();
-    await homePage.assertItem1AddedToCart();
+    await homePage.addItemsToCart();
     await homePage.deleteItem1FromCart();
-    await homePage.addItem2ToCart();
-    await homePage.assertItem1AddedToCart();
+    await homePage.cartCount("3");
 });
