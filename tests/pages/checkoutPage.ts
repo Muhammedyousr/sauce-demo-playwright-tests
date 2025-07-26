@@ -32,12 +32,16 @@ export class CheckoutPage {
   const taxValue = await this.tax.innerText();
   const totalValue = await this.totalPrice.innerText();
  
-  const subtotal = parseFloat(subtotalValue.replace("item total: $", ""));
-  const tax = parseFloat(taxValue.replace("tax: $", ""));
-  const total = parseFloat(totalValue.replace("total: $", ""));
+  const subtotal = parseFloat(subtotalValue.replace(/[^\d.]/g, ""));
+  const tax = parseFloat(taxValue.replace(/[^\d.]/g, ""));
+  const total = parseFloat(totalValue.replace(/[^\d.]/g, ""));
+  console.log("🧾 subtotalText:", subtotalValue);
+console.log("🧾 taxText:", taxValue);
+console.log("🧾 totalText:", totalValue);
+
   
 
-  expect(subtotal+ tax).toBeCloseTo(total,2);
+  expect(subtotal+ tax).toBeCloseTo(total,3);
   }
   async finishOrder(){
     await this.checkoutButton.click();
@@ -45,7 +49,6 @@ export class CheckoutPage {
   }
   }
 
-  //***** assertions */
 
 
   
