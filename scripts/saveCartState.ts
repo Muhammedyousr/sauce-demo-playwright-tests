@@ -23,3 +23,4 @@ import fs from 'fs';
 })();
 // This script logs in to the Sauce Demo website, adds items to the cart, and saves the session state including the cart.
 //npx tsx scripts/saveCartState.ts
+// Ensure you have Playwright installed and run this script using `npx tsx scripts/saveCartState.ts`
