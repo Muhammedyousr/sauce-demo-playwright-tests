@@ -27,10 +27,25 @@ export class CheckoutPage {
     await this.page.goto(this.baseUrl);
   }
 
-  //***** assertions */
-  async assertPageTitleToBeVisible() {
-    await expect(this.pagetitle).toBeVisible();
+  async calculations():Promise<void> {
+  const subtotalValue = await this.subtotal.innerText();
+  const taxValue = await this.tax.innerText();
+  const totalValue = await this.totalPrice.innerText();
+ 
+  const subtotal = parseFloat(subtotalValue.replace("item total: $", ""));
+  const tax = parseFloat(taxValue.replace("tax: $", ""));
+  const total = parseFloat(totalValue.replace("total: $", ""));
+  
+
+  expect(subtotal+ tax).toBeCloseTo(total,2);
+  }
+  async finishOrder(){
+    await this.checkoutButton.click();
+    await expect(this.page).toHaveURL("https://www.saucedemo.com/checkout-complete.html");
+  }
   }
 
+  //***** assertions */
+
+
   
-}       
